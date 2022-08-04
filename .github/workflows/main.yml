@@ -25,7 +25,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build the app
-        run: run $GITHUB_WORKSPACE && quick-movie-search build
+        run: run $GITHUB_WORKSPACE
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
