@@ -27,7 +27,7 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      -name: Install doctl
+      - name: Install doctl
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
