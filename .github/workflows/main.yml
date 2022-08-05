@@ -35,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: Restart server application
-        run: pm2 restart quickMovieSearch
+        run: pm2 restart QuickMovieSearch
 
       
       
