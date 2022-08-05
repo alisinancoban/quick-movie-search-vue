@@ -16,7 +16,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -47,6 +48,14 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       
+
+
+
+      ./config.sh --url https://github.com/alisinancoban/quick-movie-search-vue --token your_token
+./config.sh --url https://github.com/alisinancoban/quick-movie-search-vue --token AFQHXVMUWZLGFP5F3U54JMDC5TS2I
+sudo ./svc.sh install
+sudo ./svc.sh start
+
       
 
       
