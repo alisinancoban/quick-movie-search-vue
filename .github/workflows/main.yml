@@ -49,13 +49,6 @@ jobs:
           echo test, and deploy your project.
       
 
-
-
-      ./config.sh --url https://github.com/alisinancoban/quick-movie-search-vue --token your_token
-./config.sh --url https://github.com/alisinancoban/quick-movie-search-vue --token AFQHXVMUWZLGFP5F3U54JMDC5TS2I
-sudo ./svc.sh install
-sudo ./svc.sh start
-
       
 
       
