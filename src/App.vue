@@ -1,7 +1,7 @@
 <template>
   <header>
     <router-link to="/">
-      <h1><span>Quickie Search Server Deneme 2 </span>Movies</h1>
+      <h1><span>Quick Search</span>Movies</h1>
     </router-link>
   </header>
   <main></main>
