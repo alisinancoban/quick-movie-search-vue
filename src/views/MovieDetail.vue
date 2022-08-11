@@ -4,7 +4,11 @@
     <p>{{ movie.Year }}</p>
     <img :src="movie.Poster" alt="Movie Poster" class="featured-img" />
     <p>{{ movie.Plot }}</p>
+    <form @submit.prevent="AddFavorite()">
+      <input type="submit" value="Add Favorite" />
+    </form>
   </div>
+      
 </template>
 
 <script>
@@ -26,8 +30,38 @@ export default {
         });
     });
 
+    const AddFavorite = () => {
+        postData(
+          'http://localhost:3000/admin/add-movie',
+          {"title": movie.value.Title,
+          "year": movie.value.Year,
+          "type": movie.value.Plot,
+          "poster": movie.value.Poster}   
+          )
+        .then((data) => {
+            console.log(data); // JSON data parsed by `data.json()` call
+          });
+    };
+
+    async function postData(url = '', data = {}) {
+      const response = await fetch(url, {
+        method: 'POST', 
+        mode: 'cors', 
+        cache: 'no-cache', 
+        credentials: 'same-origin', 
+        headers: {
+          'Content-Type': 'application/json'
+    },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer', 
+      body: JSON.stringify(data) 
+  });
+  return response.json();
+}
+
     return {
       movie,
+      AddFavorite,
     };
   },
 };
@@ -55,5 +89,29 @@ export default {
     font-size: 18px;
     line-height: 1.4;
   }
+
+  input {
+      display: block;
+      appearance: none;
+      border: none;
+      outline: none;
+      background: none;
+
+      &[type="submit"] {
+        width: 100%;
+        max-width: 300px;
+        background-color: #42b883;
+        padding: 16px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 20px;
+        text-transform: uppercase;
+        transition: 0.4s;
+
+        &:active {
+          background-color: #3b8070;
+        }
+      }
+    }
 }
 </style>

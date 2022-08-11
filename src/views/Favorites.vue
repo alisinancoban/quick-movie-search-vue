@@ -8,33 +8,21 @@
           class="featured-img"
         />
         <div class="detail">
-          <h3>Quickie Movie Search</h3>
-          <p>
-            Quickie Movie Search is a search app for your favorite movie/series.
-          </p>
+          <h3>Favorites</h3>
         </div>
       </router-link>
     </div>
 
-    <form @submit.prevent="SearchMovies()" class="search-box">
-      <input
-        type="text"
-        placeholder="What are you looking for?"
-        v-model="search"
-      />
-      <input type="submit" value="Search" />
-    </form>
-
     <div class="movies-list">
-      <div class="movie" v-for="movie in movies" :key="movie.imdbID">
-        <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+      <div class="movie" v-for="movie in movies" :key="movie._id">
+        <router-link :to="'/movie/' + movie._id" class="movie-link">
           <div class="movie-image">
-            <img :src="movie.Poster" alt="Movie Poster" />
-            <div class="type">{{ movie.Type }}</div>
+            <img :src="movie.poster" alt="Movie Poster" />
+            <div class="type">{{ movie.type }}</div>
           </div>
           <div class="detail">
-            <p class="year">{{ movie.Year }}</p>
-            <h3>{{ movie.Title }}</h3>
+            <p class="year">{{ movie.year }}</p>
+            <h3>{{ movie.title }}</h3>
           </div>
         </router-link>
       </div>
@@ -43,30 +31,41 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 export default {
   setup() {
     const search = ref("");
     const movies = ref([]);
 
-    const SearchMovies = () => {
-      if (search.value != "") {
-        fetch(
-          `http://www.omdbapi.com/?i=tt3896198&apikey=a9598b7&s=${search.value}`
+    onBeforeMount(() => {
+      getData(
+          'http://localhost:3000/admin/favorites'
         )
-          .then((response) => response.json())
           .then((data) => {
-            movies.value = data.Search;
-            search.value = "";
+            console.log(data);
+            movies.value = data;
           });
-      }
-    };
+    });
+
+    async function getData(url = '') {
+      const response = await fetch(url, {
+        method: 'GET', 
+        mode: 'cors', 
+        cache: 'no-cache', 
+        credentials: 'same-origin', 
+        headers: {
+          'Content-Type': 'application/json'
+    },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer'
+  });
+  return response.json();
+}
 
     return {
       search,
       movies,
-      SearchMovies,
     };
   },
 };
