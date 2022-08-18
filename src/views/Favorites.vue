@@ -40,7 +40,7 @@ export default {
 
     onBeforeMount(() => {
       getData(
-          'http://localhost:3000/admin/favorites'
+          'http://104.248.250.129:3000/favorites'
         )
           .then((data) => {
             console.log(data);

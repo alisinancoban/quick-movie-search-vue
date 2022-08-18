@@ -7,8 +7,7 @@
     <form @submit.prevent="AddFavorite()">
       <input type="submit" value="Add Favorite" />
     </form>
-  </div>
-      
+  </div> 
 </template>
 
 <script>
@@ -32,14 +31,14 @@ export default {
 
     const AddFavorite = () => {
         postData(
-          'http://localhost:3000/admin/add-movie',
+          'http://104.248.250.129:3000/add-movie',
           {"title": movie.value.Title,
           "year": movie.value.Year,
           "type": movie.value.Plot,
           "poster": movie.value.Poster}   
           )
         .then((data) => {
-            console.log(data); // JSON data parsed by `data.json()` call
+            console.log(data);
           });
     };
 

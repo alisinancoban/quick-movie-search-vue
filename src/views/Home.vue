@@ -8,9 +8,9 @@
           class="featured-img"
         />
         <div class="detail">
-          <h3>Quickie Movie Search</h3>
+          <h3>Quick Movie Search</h3>
           <p>
-            Quickie Movie Search is a search app for your favorite movie/series.
+            Quick Movie Search is a search app for your favorite movie/series.
           </p>
         </div>
       </router-link>
